@@ -1,6 +1,7 @@
 name: "Continuous build (Linux)"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - '*'

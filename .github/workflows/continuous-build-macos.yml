@@ -1,6 +1,7 @@
 name: "Continuous build (macOS)"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - '*'

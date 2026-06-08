@@ -1,6 +1,7 @@
 name: "Continuous build (FreeBSD)"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - '*'
