@@ -103,3 +103,10 @@ jobs:
           RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           .github/workflows/tools/build-appimage
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: freac-linux-${{ matrix.arch }}
+          path: freac-continuous-linux-*.AppImage
+          if-no-files-found: error

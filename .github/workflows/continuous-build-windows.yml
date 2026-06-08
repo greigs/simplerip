@@ -52,3 +52,10 @@ jobs:
           set BUILD_WIN32=True
           set BUILD_${{ matrix.arch }}=True
           bash .github/workflows/tools/build-windows
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: freac-windows-${{ matrix.arch }}
+          path: freac-continuous-windows*.zip
+          if-no-files-found: error

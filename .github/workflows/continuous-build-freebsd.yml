@@ -76,3 +76,13 @@ jobs:
         run: |
           cd freac
           su vmuser -c .github/workflows/tools/build-appimage
+          # Copy the AppImage back into the synced workspace so it can be
+          # collected as a workflow artifact on the runner.
+          cp freac-continuous-freebsd-*.AppImage "$GITHUB_WORKSPACE"/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: freac-freebsd-${{ matrix.arch }}
+          path: freac-continuous-freebsd-*.AppImage
+          if-no-files-found: error

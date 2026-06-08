@@ -2,6 +2,14 @@
 
 set +x # Do not leak information
 
+# Skip uploading to GitHub releases when no release token is configured
+# (e.g. on a fork). The built files are still kept and can be collected
+# as workflow artifacts via actions/upload-artifact.
+if [ -z "${RELEASE_TOKEN}" ]; then
+  echo "RELEASE_TOKEN is not set; skipping release upload."
+  exit 0
+fi
+
 # Exit immediately if one of the files given as arguments is not there
 # because we don't want to delete the existing release if we don't have
 # the new files that should be uploaded 

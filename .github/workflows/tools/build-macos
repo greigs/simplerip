@@ -113,7 +113,9 @@ cd ..
 cd packaging/macosx
 
 bash ./prepare.sh
-bash ./package.sh "Robert Kausch" $NOTARIZATION_PASSWORD
+# Build an unsigned DMG (no Apple Developer certificate / notarization).
+# package.sh skips signing and notarization when called without a cert name.
+bash ./package.sh
 
 MACOSX_TARGET=$MACOSX_DEPLOYMENT_TARGET
 if [[ -z $MACOSX_TARGET ]]; then
